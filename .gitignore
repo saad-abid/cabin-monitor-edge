@@ -27,7 +27,8 @@ models/*
 # --- Ultralytics run outputs ---
 runs/
 
-# --- Results: keep CSVs, charts and analysis; ignore annotated videos (covered above) ---
+# --- Results: keep CSVs, charts and analysis; ignore annotated images/videos ---
+results/detections/
 
 # --- Editors / OS ---
 .vscode/
