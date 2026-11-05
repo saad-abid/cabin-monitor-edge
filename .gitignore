@@ -1,0 +1,36 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# --- Virtual environment ---
+.venv/
+venv/
+
+# --- Datasets and videos (never commit) ---
+data/*
+!data/.gitkeep
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# --- Model weights and exported models (never commit) ---
+models/*
+!models/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# --- Ultralytics run outputs ---
+runs/
+
+# --- Results: keep CSVs, charts and analysis; ignore annotated videos (covered above) ---
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

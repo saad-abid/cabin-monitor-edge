@@ -1,0 +1,33 @@
+# Central configuration. Every script reads its thresholds from here (no magic numbers in code).
+
+# --- Detection ---
+detection:
+  # COCO class IDs we keep (YOLOv8 pretrained models know 80 COCO classes).
+  classes:
+    person: 0
+    backpack: 24
+    handbag: 26
+    suitcase: 28
+  confidence: 0.35        # minimum score to keep a detection (0..1)
+  iou: 0.5                # IoU threshold for non-maximum suppression (removes duplicate boxes)
+  imgsz: 640              # input image size in pixels (fixed so exports are reproducible)
+
+# --- Occupancy ---
+occupancy:
+  moving_average_window: 15   # number of frames used to smooth the people count
+
+# --- Unattended luggage ---
+unattended:
+  time_seconds: 10.0          # T: luggage must stay still this long to raise an alert
+  motion_pixels: 15.0         # X: max movement of the luggage center (pixels) to count as "still"
+  distance_factor: 3.0        # D: a person is "nearby" if within D x luggage box diagonal
+
+# --- Tracking ---
+tracking:
+  tracker: bytetrack.yaml     # Ultralytics built-in ByteTrack config
+
+# --- Paths ---
+paths:
+  data_dir: data
+  models_dir: models
+  results_dir: results
