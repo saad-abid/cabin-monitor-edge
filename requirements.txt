@@ -1,5 +1,6 @@
 # Core deep learning / detection
 ultralytics>=8.3.0          # YOLOv8 models, training/validation, ByteTrack tracking (installs PyTorch)
+lap>=0.5.12                 # linear assignment solver used by ByteTrack to match boxes between frames
 
 # Computer vision and data
 opencv-python>=4.9

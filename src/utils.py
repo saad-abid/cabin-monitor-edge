@@ -1,9 +1,40 @@
 """Shared helpers used by every script in the project."""
 
+import math
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+Box = tuple[float, float, float, float]  # (x1, y1, x2, y2) in pixels: top-left and bottom-right corners
+LUGGAGE_CLASSES = frozenset({"backpack", "handbag", "suitcase"})
+
+
+@dataclass(frozen=True)
+class Detection:
+    """One object found in one frame. track_id is None when the tracker has not assigned an ID yet."""
+
+    track_id: int | None
+    class_name: str
+    box: Box
+
+
+def box_center(box: Box) -> tuple[float, float]:
+    """Return the (x, y) center of a box."""
+    x1, y1, x2, y2 = box
+    return (x1 + x2) / 2, (y1 + y2) / 2
+
+
+def box_diagonal(box: Box) -> float:
+    """Return the length of the box diagonal in pixels (a simple measure of its size)."""
+    x1, y1, x2, y2 = box
+    return math.hypot(x2 - x1, y2 - y1)
+
+
+def distance(p: tuple[float, float], q: tuple[float, float]) -> float:
+    """Return the straight-line distance between two points."""
+    return math.hypot(p[0] - q[0], p[1] - q[1])
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CONFIG = PROJECT_ROOT / "configs" / "settings.yaml"
